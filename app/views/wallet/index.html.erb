@@ -1,0 +1,24 @@
+<h1>My wallet:</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Balance</th>
+      <th> History</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= current_user.balance %></td>
+
+      
+   
+  </tbody>
+</table>
+<%= button_to 'Logout',destroy_user_session_path, method: :delete %>
+
+
+
+
+

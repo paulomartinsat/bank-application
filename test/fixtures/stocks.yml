@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  symbol: MyString
+  name: MyString
+  type: 
+  region: MyString
+  marketOpen: MyString
+  marketClose: MyString
+  timezone: MyString
+  currency: MyString
+  matchScore: 1.5
+
+two:
+  symbol: MyString
+  name: MyString
+  type: 
+  region: MyString
+  marketOpen: MyString
+  marketClose: MyString
+  timezone: MyString
+  currency: MyString
+  matchScore: 1.5
