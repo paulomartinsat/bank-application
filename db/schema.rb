@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_27_221618) do
+ActiveRecord::Schema.define(version: 2021_09_29_014635) do
 
   create_table "stocks", force: :cascade do |t|
     t.string "symbol"
@@ -27,12 +27,12 @@ ActiveRecord::Schema.define(version: 2021_09_27_221618) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.integer "type"
+    t.integer "mode"
     t.integer "value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "origin_wallet_id"
-    t.integer "destination_walllet_id"
+    t.integer "wallet_id", null: false
+    t.index ["wallet_id"], name: "index_transactions_on_wallet_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2021_09_27_221618) do
   end
 
   create_table "wallets", force: :cascade do |t|
-    t.decimal "balance"
+    t.decimal "balance", default: "100.0"
     t.string "history"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -58,5 +58,6 @@ ActiveRecord::Schema.define(version: 2021_09_27_221618) do
     t.index ["user_id"], name: "index_wallets_on_user_id"
   end
 
+  add_foreign_key "transactions", "wallets"
   add_foreign_key "wallets", "users"
 end
