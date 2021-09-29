@@ -1,9 +1,9 @@
 class StocksRequestService
-    def initialize
-
+    def initialize(stocks)
+        @stocks = stocks
     end
     def request 
-        endpoint = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=v&interval=5min&apikey=PEQV59FJ89YWFKP5'
+        endpoint = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=#{@stocks}&interval=5min&apikey=PEQV59FJ89YWFKP5"
         response = HTTParty.get(
             endpoint,
             :headers => {})
