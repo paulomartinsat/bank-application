@@ -1,0 +1,10 @@
+<h1> Request Debit</h1>
+<%= form_for  @transaction,  url:  create_request_transactions_path, method: :post do |f| %>
+  <div class="field">
+    <%= f.label :value %><br />
+    <%= f.number_field :value, autofocus: true %>
+  </div>
+
+  <%= f.submit 'Request'%>
+
+<%end%>

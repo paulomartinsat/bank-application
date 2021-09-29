@@ -1,0 +1,16 @@
+<h1> Create Transaction</h1>
+<%= form_for  @transaction,  url:  create_transfer_transactions_path, method: :post do |f| %>
+  <div class="field">
+    <%= f.label :destination_wallet %><br />
+    <%= f.number_field :wallet_id, autofocus: true %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :value %><br />
+    <%= f.number_field :value, autofocus: true %>
+  </div>
+  
+
+  <%= f.submit 'Create'%>
+
+<%end%>

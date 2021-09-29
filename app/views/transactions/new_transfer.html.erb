@@ -1,0 +1,14 @@
+<h1> Transfer to another user</h1>
+<%= form_for  Transaction.new ,  url:  create_transfer_transactions_path, method: :post do |f| %>
+  <div class="field">
+    <%= f.label :destination_wallet %><br />
+    <%= f.number_field :wallet_id, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :value %><br />
+    <%= f.number_field :value, autofocus: true %>
+  </div>
+
+  <%= f.submit 'Request'%>
+
+<%end%>

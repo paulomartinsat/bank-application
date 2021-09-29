@@ -6,6 +6,12 @@
     <li>
     <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
     </li>
+    <li>
+    <%= link_to 'Request', new_request_transactions_path %>
+    </li>
+    <li>
+    <%= link_to 'Transfer', new_transfer_transactions_path %>
+    </li>
     <h2> <%=link_to 'Wallet', wallet_index_path%> </h2>
 <% else %>
     <h2> Sign Up or Log in to access our services</h2>
@@ -15,4 +21,6 @@
     <li>
     <%= link_to 'Login', new_user_session_path %>
     </li>
+    
+
 <% end %>
