@@ -5,7 +5,6 @@ class TransactionsController < ApplicationController
         @transaction = Transaction.new
     end
     def create 
-        
         @transaction = Transaction.create(transactions_params)
         p Wallet.find_by(user_id: current_user.id)
         p current_user.id
@@ -37,11 +36,9 @@ class TransactionsController < ApplicationController
             notice: 'Error mading transaction!'
         end
     end
-        
-        def new_transfer
-            @transfer = Transaction.new
-        end
-    
+    def new_transfer
+        @transfer = Transaction.new
+    end
     def create_transfer
         @transaction = Transaction.create(transactions_params)
         p transactions_params
@@ -59,14 +56,10 @@ class TransactionsController < ApplicationController
             end
         else
             redirect_to wallet_index_path,
-            notice: 'Error mading transaction!'
+            notice: 'Error making transaction!'
         end
     end
     
-
-
-    
-
     private
     def transactions_params
         params.require(:transaction).permit(:value, :wallet_id) 
@@ -77,5 +70,5 @@ class TransactionsController < ApplicationController
     def set_destination_wallet
         @destination_wallet = Wallet.find_by(user_id: transactions_params[:wallet_id])
     end
-
+    
 end

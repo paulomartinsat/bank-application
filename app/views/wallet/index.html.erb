@@ -4,19 +4,33 @@
   <thead>
     <tr>
       <th>Balance</th>
-      <th> History</th>
       <th colspan="6"></th>
     </tr>
   </thead>
   <tbody>
       <tr>
-        <%@transactions = Transaction.where(wallet_id: current_wallet.id)%>
-        <% @transactions.each do%>
+        
         <td><%= @current_wallet["balance"] %></td>
-        <td><%= @current_wallet["history"] %></td>
-        <%= link_to 'Create Transaction', new_transaction_path %> 
       
       </tr>
   </tbody>
 </table>
 <%= button_to 'Logout',destroy_user_session_path, method: :delete %>
+<%= link_to 'Create Transaction', new_transaction_path %>
+
+<table>
+  <thead>
+    <tr> 
+      <th> History</th>
+      <th colspan = "6"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <%@transactions.each do |transaction|%>  
+        <td><%=transaction["history"]%></td>
+      <%end%>
+    </tr>
+  </tbody>
+</table>
+
