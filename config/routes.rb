@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'stock/index'
+  get 'stocks/index'
   get 'wallet/index'
   devise_for :users
   get 'home/index'
@@ -14,4 +14,8 @@ Rails.application.routes.draw do
     end
 
   end
+
+  post 'research_stock', to: "stocks#research_stock", as: :research_stock
+  get 'show_stocks', to: "stocks#show", as: :show
+  get 'user_list', to:"home#user_list", as: :user_list
 end
