@@ -1,0 +1,8 @@
+<%= form_with model: model, url: url  , method: :post do |f|  %>
+    <p>
+        <h4> Search for stocks informations here</h4>
+        <%=f.label :symbol%>
+        <%=f.text_field :symbol%>
+    </p>
+    <%=f.submit("Search")%>
+<% end %>
