@@ -1,10 +1,12 @@
 <h1> Welcome to Bank Mine, unleash now your money </h1>
-<h3> <%= link_to 'Stock', stock_index_path%></h2>
-
+<h3> <%= link_to 'Stock', stocks_index_path %></h2>
 <% if current_user %>
     <h1>Welcome <%= current_user.email %> to  Bank Mine : Your personal Virtual Bank</h1>
     <li>
     <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+    </li>
+    <li>
+    <%= link_to 'Users List', user_list_path %>
     </li>
     <li>
     <%= link_to 'Request', new_request_transactions_path %>

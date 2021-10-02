@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    
+    <%= render "stocks/form", url: research_stock_path, model: @stocks, method: :post %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
