@@ -21,14 +21,24 @@
 <table>
   <thead>
     <tr> 
-      <th> History</th>
-      <th colspan = "6"></th>
+      <th> Transferences received</th>
+      <th> Transferences made </th>
+      <th colspan = "3"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <%@transactions.each do |transaction|%>  
-        <td><%=transaction["history"]%></td>
+        <td>
+          <%if transaction.mode == 1%>
+            <%= "#{transaction.value}--#{transaction.created_at.strftime("%d/%m/%Y")}" %>
+          <%end%> 
+        </td>
+        
+        <td> 
+          <%if transaction.mode == 0%>
+            <%= "#{transaction.value}--#{transaction.created_at.strftime("%d/%m/%Y")}" %>
+          <%end%> 
       <%end%>
     </tr>
   </tbody>
