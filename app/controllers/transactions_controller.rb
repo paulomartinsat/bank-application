@@ -6,8 +6,6 @@ class TransactionsController < ApplicationController
     end
     def create 
         @transaction = Transaction.create(transactions_params)
-        p Wallet.find_by(user_id: current_user.id)
-        p current_user.id
         @transaction.wallet_id = Wallet.find_by(user_id: current_user.id)
         if @transaction.save!
             redirect_to wallet_index_path,
@@ -41,12 +39,9 @@ class TransactionsController < ApplicationController
     end
     def create_transfer
         @transaction = Transaction.create(transactions_params)
-        p transactions_params
         if @current_wallet["balance"] > transactions_params[:value].to_f
-            @transaction = Transaction.new(transactions_params)
-            @transaction.mode = 0
-            @transaction.wallet = @destination_wallet
-            @destination_wallet.update(balance: @destination_wallet.balance + @transaction.value)
+            origin_transaction
+            destination_transaction
             if @transaction.save!
                 redirect_to wallet_index_path,
                 notice: 'Transaction made, money is available to the user!'
@@ -59,6 +54,7 @@ class TransactionsController < ApplicationController
             notice: 'Error making transaction!'
         end
     end
+
     
     private
     def transactions_params
@@ -69,6 +65,22 @@ class TransactionsController < ApplicationController
     end
     def set_destination_wallet
         @destination_wallet = Wallet.find_by(user_id: transactions_params[:wallet_id])
+    end
+    def origin_transaction
+        ActiveRecord::Base.transaction do
+            transaction = Transaction.new(value: transactions_params[:value].to_f, mode: 0)
+            transaction.wallet = @current_wallet
+            transaction.save!
+            @current_wallet.update(balance: @current_wallet.balance - transaction.value)
+        end
+    end
+    def destination_transaction
+        ActiveRecord::Base.transaction do
+            transaction = Transaction.new(value: transactions_params[:value].to_f, mode: 1)
+            transaction.wallet = @destination_wallet
+            transaction.save!
+            @destination_wallet.update(balance: @destination_wallet.balance + transaction.value)
+        end
     end
     
 end
