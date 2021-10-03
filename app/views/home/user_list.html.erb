@@ -1,6 +1,16 @@
-<h1> User Logged in </h1>
-
-<% @all_users.each do |user|%>
-    <%= user.full_name%>
-    <%= user.email%>
-<%end%>
+<h1> Users cadastred </h1>
+<table>
+    <thead>
+        <tr>
+            <th> User email / Wallet id</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @all_users.each do |user|%>
+            <tr>
+                <td> <%= user.email%>  ----  Wallet id =  <%= user.id%> </td>
+                 
+            </tr>
+        <%end%>
+    </tbody>
+</table>

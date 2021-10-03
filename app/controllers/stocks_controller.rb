@@ -5,10 +5,14 @@ class StocksController < ApplicationController
   end
 
   def research_stock
-    redirect_to show_path(symbol: params[:symbol])
+    p stock_params
+    redirect_to show_path(stock_params)
   end
   private
   def request_stock
     @stocks = StocksRequestService.new(params[:symbol]).request 
+  end
+  def stock_params
+    params.require(:stock).permit(:symbol)
   end
 end

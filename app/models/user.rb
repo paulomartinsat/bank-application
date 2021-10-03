@@ -8,5 +8,10 @@ class User < ApplicationRecord
   def set_wallet
     self.wallet = Wallet.create
   end
-  
+  def user_list
+    @user = User.find_by_id(params[:id])
+  end
+  def all_users
+    @users = User.all
+  end
 end

@@ -1,1 +1,23 @@
-<%=@stocks%>
+<h1>Stock lists</h1>
+<h1><%=link_to 'Wallet', wallet_index_path%></h1>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th> Closing price</th>
+      <th>Opening price</th>
+      <th>Higher price</th>
+      <th>Lower price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stocks["Time Series (Daily)"].each do |stock| %>
+      <tr>
+        <td><%= stock[1]["1. open"] %></td>
+        <td><%= stock[1]["4. close"] %></td>
+        <td><%= stock[1]["2. high"] %></td>
+        <td><%= stock[1]["3. low"] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,8 @@
+/*
+ *= require bootstrap
+ *= require_tree .
+ *= require_self
+ *= require_bootstrap/dist/css/bootstrap
+ *= require_popper.js/dist/popper
+ */
+ @import "bootstrap/scss/bootstrap";

@@ -9,37 +9,42 @@
   </thead>
   <tbody>
       <tr>
-        
         <td><%= @current_wallet["balance"] %></td>
-      
       </tr>
   </tbody>
 </table>
 <%= button_to 'Logout',destroy_user_session_path, method: :delete %>
 <%= link_to 'Create Transaction', new_transaction_path %>
-
 <table>
   <thead>
-    <tr> 
-      <th> Transferences received</th>
-      <th> Transferences made </th>
-      <th colspan = "3"></th>
-    </tr>
+    <h1> History of transactions </h1>
+    <tr>
+      <th> Debit </th>
+      <th>Credit</th>
+      <th colspan="6">
   </thead>
   <tbody>
     <tr>
-      <%@transactions.each do |transaction|%>  
-        <td>
-          <%if transaction.mode == 1%>
-            <%= "#{transaction.value}--#{transaction.created_at.strftime("%d/%m/%Y")}" %>
-          <%end%> 
-        </td>
-        
-        <td> 
-          <%if transaction.mode == 0%>
-            <%= "#{transaction.value}--#{transaction.created_at.strftime("%d/%m/%Y")}" %>
-          <%end%> 
-      <%end%>
+      <div class = "td2">
+        <%@transactions.each do |transaction|%>  
+          <td>
+            <p>
+            <%if transaction.mode == 1%>
+              <%= "Credit of :#{transaction.value} $   Made in :#{transaction.created_at.strftime("%d/%m/%Y")}" %>
+            <%end%> 
+            </p>
+          </tr>
+          
+          
+          <td>
+            <p>
+            <%if transaction.mode == 0%>
+              <%= "Debit of:  -#{transaction.value}$  Made in: #{transaction.created_at.strftime("%d/%m/%Y")}" %>
+            <%end%> 
+            </p>
+          </td>
+        <%end%>
+      </div>   
     </tr>
   </tbody>
 </table>

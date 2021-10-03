@@ -1,20 +1,21 @@
-<h1> Welcome to Bank Mine, unleash now your money </h1>
-<h3> <%= link_to 'Stock', stocks_index_path %></h2>
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to Bank Mine, unleash now your money</h1>
+    <p class="lead">This is your personal bank, create your account to transfer money to another users and request money to your hands.</p>
+    <hr class="my-4">    <p> Stay connected with us by creating an account or login in to an existing account</p>
+</div>
 <% if current_user %>
     <h1>Welcome <%= current_user.email %> to  Bank Mine : Your personal Virtual Bank</h1>
-    <li>
-    <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-    </li>
-    <li>
-    <%= link_to 'Users List', user_list_path %>
-    </li>
-    <li>
-    <%= link_to 'Request', new_request_transactions_path %>
-    </li>
-    <li>
-    <%= link_to 'Transfer', new_transfer_transactions_path %>
-    </li>
-    <h2> <%=link_to 'Wallet', wallet_index_path%> </h2>
+    <p>
+        <%= link_to 'Users List', user_list_path, class:"btn btn-primary btn-lg", role:"button" %>
+    </p>
+    <p>
+        <%= link_to 'Request Money', new_request_transactions_path, class:"btn btn-primary btn-lg", role:"button" %>
+    </p>
+    <p>
+        <%= link_to 'Transfer', new_transfer_transactions_path, class:"btn btn-primary btn-lg", role:"button" %>
+    </p>
+    <h2> <%=link_to 'Wallet', wallet_index_path, class:"btn btn-primary btn-lg", role:"button"%> </h2>
+    <p><%= button_to 'Logout', destroy_user_session_path, class:"btn btn-primary btn-lg", role:"button", method: :delete %></p>
 <% else %>
     <h2> Sign Up or Log in to access our services</h2>
     <li>
@@ -23,6 +24,6 @@
     <li>
     <%= link_to 'Login', new_user_session_path %>
     </li>
-    
-
 <% end %>
+
+
